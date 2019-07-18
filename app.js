@@ -17,24 +17,14 @@ const inventors = [
 const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 //Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
-var live = document.getElementById("1500")
-live = addEventListener("click", liveIn1500)
-function liveIn1500() {
-    const fifteen = inventors.filter(inventor => {
+
+    const fifteen = inventors.filter((inventor) => {
         if (inventor.year >= 1500 && inventor.year <= 1599) {
             return true
         }
     })
-    console.log(fifteen)
-    for (var i = 0; i < fifteen.length; i++) {
-        mix = document.querySelector(".mix")
-        mix.InnerHTML = ""
-        var div = document.createElement("div")
-        div.innerHTML = fifteen[i].first + fifteen[i].last +fifteen[i].year + "-" + fifteen[i].passed
-        mix.appendChild(div)
+    console.table(fifteen)
 
-    }
-}
 
 
 // Array.prototype.map()
@@ -42,53 +32,53 @@ function liveIn1500() {
 const fullNames = inventors.map(inventor => {
     return inventor.first + inventor.last
 })
-console.table(fullNames)
 
 // Array.prototype.sort()
 // 3. Sort the inventors by birthdate, oldest to youngest
-// const ordered = inventors.sort(function(a,b){
-//     if(a.year > b.year){
-//         return 1
-//     } else {
-//         return -1
-//     }
-// })
-var sort = document.getElementById("sort")
-sort.addEventListener("click", sort)
-function sort(){
-const ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1)
-for(var i =0;i<ordered.length; i++){
-    mix = document.querySelector(".mix")
-        mix.InnerHTML = ""
+var sortNames = document.getElementById("sort")
+sortNames.addEventListener("click", sortOf)
+function sortOf() {
+    const ordered = inventors.sort((a, b) => {
+        mix = document.querySelector(".mix")
+        mix.innerHTML = ""
+        if (a.year > b.year) {
+            return 1
+        } else {
+            return -1
+        }
+    })
+    console.table(ordered)
+    for (var i = 0; i < ordered.length; i++) {
         var div = document.createElement("div")
-        div.innerHTML = ordered[i].first + ordered[i].last 
+        div.innerHTML = ordered[i].first + ordered[i].last + "-" + ordered[i].year
+        mix.appendChild(div)
+    }
 }
-}
+//     const ordered = inventors.sort((a, b) => a.year > b.year ? 1 : -1)
+
 // Array.prototype.reduce()
 // 4. How many years did all the inventors live?
 const totalYears = inventors.reduce((total, inventor) => {
     return total + (inventor.passed - inventor.year)
 }, 0)
-console.log(totalYears)
 // 5. Sort the inventors by years lived
 var longest = document.getElementById("longest")
 longest.addEventListener("click", showLongest)
-
 function showLongest() {
     const oldest = inventors.sort((a, b) => {
+        mix = document.querySelector(".mix")
+        mix.innerHTML = ""
         if (a.passed - a.year < b.passed - b.year) {
             return 1;
         } else {
             return -1
         }
     })
+    console.table(oldest)
     for (var i = 0; i < inventors.length; i++) {
-        mix = document.querySelector(".mix")
-        mix.InnerHTML = ""
         var div = document.createElement("div")
         div.innerHTML = oldest[i].first + oldest[i].last + (oldest[i].year - oldest[i].passed)
         mix.appendChild(div)
-        console.table(oldest[i].first)
     }
 }
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
