@@ -17,14 +17,23 @@ const inventors = [
 const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 //Array.prototype.filter()
 // 1. Filter the list of inventors for those who were born in the 1500's
-
+var filterLiveButton = document.getElementById("filterLive")
+filterLiveButton.addEventListener("click", filterLive)
+function filterLive() {
     const fifteen = inventors.filter((inventor) => {
-        if (inventor.year >= 1500 && inventor.year <= 1599) {
+        mix = document.querySelector(".mix")
+        mix.innerHTML = ""
+        if (inventor.year >= 1500 && inventor.year <= 1799) {
             return true
         }
     })
     console.table(fifteen)
-
+    for (var i = 0; i < fifteen.length; i++) {
+        var div = document.createElement("div")
+        div.innerHTML = fifteen[i].first + fifteen[i].last + fifteen[i].year + "-" + fifteen[i].passed
+        mix.appendChild(div)
+    }
+}
 
 
 // Array.prototype.map()
@@ -81,10 +90,25 @@ function showLongest() {
         mix.appendChild(div)
     }
 }
-// 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-// https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
-
+// 6. create a list that contain 'er' anywhere in the name
+var filterErButton = document.getElementById("filter")
+filterErButton.addEventListener("click", filterEr)
+function filterEr() {
+    const category = document.querySelector(".names")
+    const single = [...category.querySelectorAll("div")]
+    const er = single.map(link => {
+        mix = document.querySelector(".mix")
+        mix.innerHTML = ""
+        return link.textContent
+    }).filter(name => name.includes("er"))
+    console.table(er)
+    for (var i = 0; i < er.length; i++) {
+        var div = document.createElement("div")
+        div.innerHTML = er[i].slice(0, -19)
+        console.log(er[i])
+        mix.appendChild(div)
+    }
+}
 // 7. sort Exercise
 // Sort the people alphabetically by last name
 
