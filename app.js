@@ -13,10 +13,8 @@ const inventors = [
     { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
     { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
 ];
-
-const people = ['Beck, Glenn', 'Becker, Carl', 'Beckett, Samuel', 'Beddoes, Mick', 'Beecher, Henry', 'Beethoven, Ludwig', 'Begin, Menachem', 'Belloc, Hilaire', 'Bellow, Saul', 'Benchley, Robert', 'Benenson, Peter', 'Ben-Gurion, David', 'Benjamin, Walter', 'Benn, Tony', 'Bennington, Chester', 'Benson, Leana', 'Bent, Silas', 'Bentsen, Lloyd', 'Berger, Ric', 'Bergman, Ingmar', 'Berio, Luciano', 'Berle, Milton', 'Berlin, Irving', 'Berne, Eric', 'Bernhard, Sandra', 'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken', 'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine', 'Black, Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
 //Array.prototype.filter()
-// 1. Filter the list of inventors for those who were born in the 1500's
+// 1. Filter the list of inventors for those who were born in the 1500 to 1799
 var filterLiveButton = document.getElementById("filterLive")
 filterLiveButton.addEventListener("click", filterLive)
 function filterLive() {
@@ -30,7 +28,7 @@ function filterLive() {
     console.table(fifteen)
     for (var i = 0; i < fifteen.length; i++) {
         var div = document.createElement("div")
-        div.innerHTML = fifteen[i].first + fifteen[i].last + fifteen[i].year + "-" + fifteen[i].passed
+        div.innerHTML = fifteen[i].first  +" "+ fifteen[i].last +" "+ fifteen[i].year + "-" + fifteen[i].passed
         mix.appendChild(div)
     }
 }
@@ -59,7 +57,7 @@ function sortOf() {
     console.table(ordered)
     for (var i = 0; i < ordered.length; i++) {
         var div = document.createElement("div")
-        div.innerHTML = ordered[i].first + ordered[i].last + "-" + ordered[i].year
+        div.innerHTML = ordered[i].first +" "+ ordered[i].last + " " + ordered[i].year
         mix.appendChild(div)
     }
 }
@@ -86,7 +84,7 @@ function showLongest() {
     console.table(oldest)
     for (var i = 0; i < inventors.length; i++) {
         var div = document.createElement("div")
-        div.innerHTML = oldest[i].first + oldest[i].last + (oldest[i].year - oldest[i].passed)
+        div.innerHTML = oldest[i].first +" "+ oldest[i].last +" "+ (oldest[i].passed-oldest[i].year) +" "+ "years old when passed"
         mix.appendChild(div)
     }
 }
@@ -104,14 +102,8 @@ function filterEr() {
     console.table(er)
     for (var i = 0; i < er.length; i++) {
         var div = document.createElement("div")
-        div.innerHTML = er[i].slice(0, -19)
+        div.innerHTML = er[i].slice(0, -11)
         console.log(er[i])
         mix.appendChild(div)
     }
 }
-// 7. sort Exercise
-// Sort the people alphabetically by last name
-
-// 8. Reduce Exercise
-// Sum up the instances of each of these
-const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck'];
